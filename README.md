@@ -6,3 +6,5 @@ This repository contains 6 examples of converting an object to an anonymous obje
 1. A private static helper method that takes an object and an anonymous object as parameters
 2. An extension method version of the first helper method
 3. A set of instructions for how to use JsonConvert that casts the object to JSON and back to an Anonymous Type
+
+Each method has two examples, one for an anonymous type with only primitives, one for an anonymous type with nested objects.
