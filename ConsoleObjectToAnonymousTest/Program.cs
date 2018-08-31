@@ -37,7 +37,6 @@ namespace ConsoleObjectToAnonymousTest
         {
             var anonType = new { Val1 = "", Val2 = "" };
             var anonObject = CastTo(inObject, anonType);
-            //var anonObject = inObject.Anonymize(anonType);
 
             if (anonObject.Val1 == "Test")
                 return true;
@@ -47,9 +46,8 @@ namespace ConsoleObjectToAnonymousTest
         public static bool TestMethodWithObjectsCastTo(object inObject)
         {
             var anonType = new { Val1 = new User(), Val2 = new Status() };
-            var anonObject = inObject.Anonymize(anonType);
-
-            //var anonObject = CastTo(inObject, anonType);
+            var anonObject = CastTo(inObject, anonType);
+            
             if (anonObject.Val1.Id == 1 && anonObject.Val1.Name == "Mitch" && 
                 anonObject.Val2.Code == 200 && anonObject.Val2.Error == "None")
                 return true;
