@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 
 namespace ConsoleObjectToAnonymousTest
@@ -8,32 +8,32 @@ namespace ConsoleObjectToAnonymousTest
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var result = TestMethodCastTo(new { Val1 = "Test", Val2 = "Test2" });
+            var result = TestMethod_CastTo(new { Val1 = "Test", Val2 = "Test2" });
             Console.WriteLine($"Attempt to use CastTo to convert object to anonymous type was {(result ? "Successful" : "Unsuccessful")}");
 
-            var result2 = TestMethodWithObjectsCastTo(new { Val1 = new User(), Val2 = new Status() });
+            var result2 = TestMethodWithObjects_CastTo(new { Val1 = new User(), Val2 = new Status() });
             Console.WriteLine($"Attempt to use CastTo to convert object to anonymous type was {(result2 ? "Successful" : "Unsuccessful")}");
 
             Console.WriteLine(); //Spacer
 
-            var result3 = TestMethodAnonymizeExtension(new { Val1 = "Test", Val2 = "Test2" });
+            var result3 = TestMethod_AnonymizeExtension(new { Val1 = "Test", Val2 = "Test2" });
             Console.WriteLine($"Attempt to use extension method to convert object to anonymous type was {(result3 ? "Successful" : "Unsuccessful")}");
 
-            var result4 = TestMethodWithObjectsAnonymizeExtension(new { Val1 = new User(), Val2 = new Status() });
+            var result4 = TestMethodWithObjects_AnonymizeExtension(new { Val1 = new User(), Val2 = new Status() });
             Console.WriteLine($"Attempt to use extension method to convert object to anonymous type was {(result4 ? "Successful" : "Unsuccessful")}");
 
             Console.WriteLine(); //Spacer
 
-            var result5 = TestMethodJsonConvert(new { Val1 = "Test", Val2 = "Test2" });
+            var result5 = TestMethod_JsonConvert(new { Val1 = "Test", Val2 = "Test2" });
             Console.WriteLine($"Attempt to use JsonConvert to convert object to anonymous type was {(result5 ? "Successful" : "Unsuccessful")}");
 
-            var result6 = TestMethodWithObjectsJsonConvert(new { Val1 = new User(), Val2 = new Status() });
+            var result6 = TestMethodWithObjects_JsonConvert(new { Val1 = new User(), Val2 = new Status() });
             Console.WriteLine($"Attempt to use JsonConvert to convert object to anonymous type was {(result6 ? "Successful" : "Unsuccessful")}");
 
             Console.Read();
         }
 
-        public static bool TestMethodCastTo(object inObject)
+        public static bool TestMethod_CastTo(object inObject)
         {
             var anonType = new { Val1 = "", Val2 = "" };
             var anonObject = CastTo(inObject, anonType);
@@ -43,18 +43,18 @@ namespace ConsoleObjectToAnonymousTest
             return false;
         }
 
-        public static bool TestMethodWithObjectsCastTo(object inObject)
+        public static bool TestMethodWithObjects_CastTo(object inObject)
         {
             var anonType = new { Val1 = new User(), Val2 = new Status() };
             var anonObject = CastTo(inObject, anonType);
-            
+
             if (anonObject.Val1.Id == 1 && anonObject.Val1.Name == "Mitch" && 
                 anonObject.Val2.Code == 200 && anonObject.Val2.Error == "None")
                 return true;
             return false;
         }
 
-        public static bool TestMethodAnonymizeExtension(object inObject)
+        public static bool TestMethod_AnonymizeExtension(object inObject)
         {
             var anonType = new { Val1 = "", Val2 = "" };
             var anonObject = inObject.Anonymize(anonType);
@@ -64,7 +64,7 @@ namespace ConsoleObjectToAnonymousTest
             return false;
         }
 
-        public static bool TestMethodWithObjectsAnonymizeExtension(object inObject)
+        public static bool TestMethodWithObjects_AnonymizeExtension(object inObject)
         {
             var anonType = new { Val1 = new User(), Val2 = new Status() };
             var anonObject = inObject.Anonymize(anonType);
@@ -75,7 +75,7 @@ namespace ConsoleObjectToAnonymousTest
             return false;
         }
 
-        public static bool TestMethodJsonConvert(object inObject)
+        public static bool TestMethod_JsonConvert(object inObject)
         {
             string resultBody = JsonConvert.SerializeObject(inObject);
             var anonType = new { Val1 = "", Val2 = "" };
@@ -86,7 +86,7 @@ namespace ConsoleObjectToAnonymousTest
             return false;
         }
 
-        public static bool TestMethodWithObjectsJsonConvert(object inObject)
+        public static bool TestMethodWithObjects_JsonConvert(object inObject)
         {
             string resultBody = JsonConvert.SerializeObject(inObject);
             var anonType = new { Val1 = new User(), Val2 = new Status() };
